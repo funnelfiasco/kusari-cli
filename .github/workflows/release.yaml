@@ -105,6 +105,7 @@ jobs:
           ls -R ; fpm -s dir -t rpm \
             -p kusari-cli-${VERSION}-x86_64.rpm \
             ${FPM_ARGS} \
+            --name kusari-cli \
             --version ${VERSION} \
             --architecture x86_64 \
             --license MIT \
