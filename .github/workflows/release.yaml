@@ -102,7 +102,7 @@ jobs:
       - name: Generate RPM
         if: startsWith(github.ref, 'refs/tags')
         run: |
-          fpm -s dir -t rpm \
+          ls -R ; fpm -s dir -t rpm \
             -p kusari-cli-${VERSION}-x86_64.rpm \
             ${FPM_ARGS} \
             --version ${VERSION} \
