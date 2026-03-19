@@ -25,7 +25,7 @@ jobs:
       contents: write # To upload assets to release
     env:
       # Define some common static FPM arguments to reduce copypasta
-      FPM_ARGS: "--license MIT --description 'Command line interface for Kusari' --maintainer Kusari --url 'https://github.com/kusaridev/kusari-cli'"
+      FPM_ARGS: --license MIT --description "Command line interface for Kusari" --maintainer Kusari --url "https://github.com/kusaridev/kusari-cli"
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
