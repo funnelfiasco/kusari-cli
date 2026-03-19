@@ -131,20 +131,8 @@ nfpms:
     license: MIT
 
     # Map GoReleaser's build output to the installed path
-    bindir: /usr/bin
+    #bindir: /usr/bin
 
-    # Only target the two Linux builds
-    builds:
-      - kusari   # must match the `id:` in your builds: section
-
-    # Only produce RPM packages
     formats:
       - rpm
       - deb
-
-    # GoReleaser substitutes the correct path per architecture automatically.
-    contents:
-      - src: "{{ .ArtifactPath }}"
-        dst: /usr/bin/kusari
-        file_info:
-          mode: 0755
