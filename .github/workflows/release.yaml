@@ -29,13 +29,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Get tag name and set as environment variable
-        run: |
-          # Extract the tag name from the ref (e.g., change 'refs/tags/v1.0.0' to 'v1.0.0')
-          TAG_NAME="${{ github.ref_name }}"
-          # Set the VERSION environment variable
-          echo "VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
-        shell: bash
       - name: Login to GitHub Container Registry
         uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
@@ -69,10 +62,6 @@ jobs:
         uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # main
       - name: Install syft
         uses: anchore/sbom-action/download-syft@57aae528053a48a3f6235f2d9461b05fbcb7366d # v0.23.1
-      - name: Install fpm
-        run: |
-          sudo apt install ruby ruby-dev rubygems build-essential
-          sudo gem install fpm
 
       - name: Run GoReleaser Snapshot
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
@@ -97,22 +86,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_CONTEXT: default
-
-      # Generate RPM package
-      - name: Generate RPM
-        if: startsWith(github.ref, 'refs/tags')
-        run: |
-          ls -R ; fpm -s dir -t rpm \
-            -p kusari-cli-${VERSION}-x86_64.rpm \
-            ${FPM_ARGS} \
-            --name kusari-cli \
-            --version ${VERSION} \
-            --architecture x86_64 \
-            --license MIT \
-            --description "Command line interface for Kusari" \
-            --maintainer Kusari \
-            --url "https://github.com/kusaridev/kusari-cli" \
-            dist/kusari_linux_amd64_v1/kusari=/usr/bin/kusari
 
       # Generate image SBOM
       - uses: anchore/sbom-action@57aae528053a48a3f6235f2d9461b05fbcb7366d # v0.23.1

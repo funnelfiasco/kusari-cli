@@ -130,9 +130,6 @@ nfpms:
     description: Command line interface for Kusari
     license: MIT
 
-    # Map GoReleaser's build output to the installed path
-    #bindir: /usr/bin
-
     formats:
       - rpm
       - deb
