@@ -111,7 +111,7 @@ jobs:
             --description "Command line interface for Kusari" \
             --maintainer Kusari \
             --url "https://github.com/kusaridev/kusari-cli" \
-            dist/kusari_linux_amd64_v1/kusari=/usr/bin/kusari
+            ./dist/kusari_linux_amd64_v1/kusari=/usr/bin/kusari
 
       # Generate image SBOM
       - uses: anchore/sbom-action@57aae528053a48a3f6235f2d9461b05fbcb7366d # v0.23.1
