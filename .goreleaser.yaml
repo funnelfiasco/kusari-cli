@@ -121,7 +121,7 @@ before:
     - go generate ./...
     - go test ./...
 
-  nfpms:
+nfpms:
   - id: kusari
     package_name: kusari-cli
     vendor: Kusari
