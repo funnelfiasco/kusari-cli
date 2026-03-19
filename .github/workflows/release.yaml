@@ -110,7 +110,7 @@ jobs:
             --license MIT \
             --description "Command line interface for Kusari" \
             --maintainer Kusari \
-            --url "https://github.com/kusaridev/kusari-cli"
+            --url "https://github.com/kusaridev/kusari-cli" \
             dist/kusari_linux_amd64_v1/kusari=/usr/bin/kusari
 
       # Generate image SBOM
