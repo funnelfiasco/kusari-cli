@@ -148,26 +148,3 @@ nfpms:
         dst: /usr/bin/kusari
         file_info:
           mode: 0755
-
-    # RPM-specific overrides
-    rpm:
-      # Map Go's arch names to RPM's arch names
-      # GoReleaser handles amd64 → x86_64 and arm64 → aarch64 automatically,
-      # but this makes the mapping explicit and overridable.
-      arch_replacements:
-        amd64: x86_64
-        arm64: aarch64
-
-      # Optional: set the RPM release/epoch fields
-      release: "1"
-      # epoch: 0
-
-      # Optional: compression algorithm (gzip | xz | lzma | zstd)
-      compression: xz
-
-    # Restrict to linux targets explicitly
-    goos:
-      - linux
-    goarch:
-      - amd64
-      - arm64
