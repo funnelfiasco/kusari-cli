@@ -23,9 +23,6 @@ jobs:
       packages: write # To publish container images to GHCR
       id-token: write # To use our OIDC token
       contents: write # To upload assets to release
-    env:
-      # Define some common static FPM arguments to reduce copypasta
-      FPM_ARGS: --license MIT --description "Command line interface for Kusari" --maintainer Kusari --url "https://github.com/kusaridev/kusari-cli"
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -110,6 +107,10 @@ jobs:
             ${FPM_ARGS} \
             --version ${VERSION} \
             --architecture x86_64
+            --license MIT \
+            --description "Command line interface for Kusari" \
+            --maintainer Kusari \
+            --url "https://github.com/kusaridev/kusari-cli"
             dist/kusari_linux_amd64_v1/kusari=/usr/bin/kusari
 
       # Generate image SBOM
